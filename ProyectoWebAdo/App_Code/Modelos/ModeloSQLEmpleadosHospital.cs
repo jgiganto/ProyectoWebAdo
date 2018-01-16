@@ -105,10 +105,43 @@ namespace ProyectoWebAdo.Modelos
             return lista;
         }
 
-        public IncrementarSalario(String hospitalcod, int incremento)
+        public List<EmpleadoHospital> IncrementarSalario(String hospitalcod, int incremento)
         {
             SqlParameter pamhospcod = new SqlParameter("@HOSPITALCOD", hospitalcod);
             SqlParameter pamincremento = new SqlParameter("@INCREMENTO", incremento);
+            this.com.Parameters.Add(pamhospcod);
+            this.com.Parameters.Add(pamincremento);
+            this.com.CommandType = CommandType.StoredProcedure;
+            this.com.CommandText = "MODIFICARSALARIO";
+            this.ademp.SelectCommand = this.com;
+            if (this.ds.Tables.Contains("EMPLEADOS"))
+            {
+                this.ds.Tables["EMPLEADOS"].Rows.Clear();
+            }
+            this.ademp.Fill(this.ds, "EMPLEADOS");
+            this.com.Parameters.Clear();
+            SqlParameter pamhospcod2 = new SqlParameter("@HOSPITALCOD", hospitalcod);
+            this.com.Parameters.Add(pamhospcod2);
+            this.com.CommandType = CommandType.StoredProcedure;
+            this.com.CommandText = "VEREMPLEADOS";
+            this.ademp.SelectCommand = this.com;
+
+            if (this.ds.Tables.Contains("EMPLEADOS"))
+            {
+                this.ds.Tables["EMPLEADOS"].Rows.Clear();
+            }
+            this.ademp.Fill(this.ds, "EMPLEADOS");
+            this.com.Parameters.Clear();
+            List<EmpleadoHospital> lista = new List<EmpleadoHospital>();
+            foreach (DataRow f in this.ds.Tables["EMPLEADOS"].Rows)
+            {
+                EmpleadoHospital emp = new EmpleadoHospital();
+                emp.apellido = f["APELLIDO"].ToString();
+                emp.funcion = f["FUNCION"].ToString();
+                emp.salario = int.Parse(f["SALARIO"].ToString());
+                lista.Add(emp);
+            }
+            return lista;
 
 
         }
