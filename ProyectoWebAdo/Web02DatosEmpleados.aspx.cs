@@ -48,5 +48,10 @@ public partial class Web02DatosEmpleados : System.Web.UI.Page
         this.lbldatos.Text = html;
     }
 
-//pruebadhhh
+    //pruebadhhh
+
+    protected void lstempleados_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }

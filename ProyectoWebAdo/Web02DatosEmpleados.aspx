@@ -12,7 +12,7 @@
 
             Empleados<br />
             <br />
-            <asp:ListBox ID="lstempleados" runat="server" Height="305px" Width="232px"></asp:ListBox>
+            <asp:ListBox ID="lstempleados" runat="server" Height="305px" Width="232px" OnSelectedIndexChanged="lstempleados_SelectedIndexChanged"></asp:ListBox>
 
         </div>
         <asp:Button ID="btnmostrar" runat="server" OnClick="btnmostrar_Click" Text="Mostrar datos" Width="205px" />

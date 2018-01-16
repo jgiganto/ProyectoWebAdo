@@ -38,4 +38,9 @@ public partial class Web01PrimeraPagina : System.Web.UI.Page
         //ASP NET PERMITE SALIDA HTML
         Label1.Text = "Su nombre es<h1>" + nombre + "</h1>";
     }
+
+    protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
