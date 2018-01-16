@@ -16,9 +16,7 @@ namespace ProyectoWebAdo.Modelos
 
         public Empleado()
         {
-
-
-
+            
         }
     }
 }

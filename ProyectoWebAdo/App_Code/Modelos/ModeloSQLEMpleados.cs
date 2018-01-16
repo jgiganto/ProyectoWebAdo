@@ -22,7 +22,18 @@ AS
 	INNER JOIN DEPT
 	ON EMP.DEPT_NO = DEPT.DEPT_NO
 	WHERE EMP.EMP_NO = @EMPNO
-GO*/
+GO
+
+ CREATE PROCEDURE BUSCADOREMPLEADOS
+(@APELLIDO NVARCHAR(20))
+AS
+SELECT EMP.EMP_NO,EMP.APELLIDO,EMP.OFICIO,EMP.SALARIO,DEPT.DNOMBRE,DEPT.LOC
+FROM EMP
+INNER JOIN  DEPT
+ON EMP.DEPT_NO = DEPT.DEPT_NO
+WHERE EMP.APELLIDO LIKE @APELLIDO + '%'
+GO
+     */
 #endregion
 namespace ProyectoWebAdo.Modelos
 {
@@ -60,8 +71,7 @@ namespace ProyectoWebAdo.Modelos
                 emp.Salario = int.Parse(f["SALARIO"].ToString());
                 emp.Departamento = f["DNOMBRE"].ToString();
                 emp.Localidad = f["LOC"].ToString();
-                lista.Add(emp);
-                
+                lista.Add(emp);                
             }
             return lista;
         }
@@ -84,6 +94,38 @@ namespace ProyectoWebAdo.Modelos
             emp.Departamento = f["DNOMBRE"].ToString();
             emp.Localidad = f["LOC"].ToString();
             return emp;
+        }
+        public List<Empleado> BuscarEmpleados(String apellido)
+        {
+            SqlParameter pamape =
+                new SqlParameter("@APELLIDO", apellido);
+            this.com.Parameters.Add(pamape);
+            this.com.CommandType = CommandType.StoredProcedure;
+            this.com.CommandText = "BUSCADOREMPLEADOS";
+            this.ademp.SelectCommand = this.com;
+            this.ademp.Fill(this.ds, "EMP");
+            if(this.ds.Tables["EMP"].Rows.Count == 0)
+            {
+                return null; // si no hay datos siempre devuelvo un null como norma
+            }
+            else
+            {
+                List<Empleado> lista = new List<Empleado>();
+                foreach(DataRow f in this.ds.Tables["EMP"].Rows)
+                {
+                    Empleado emp = new Empleado();
+                    emp.EmpleadoNumero = int.Parse(f["EMP_NO"].ToString());
+                    emp.Apellido = f["APELLIDO"].ToString();
+                    emp.Oficio = f["OFICIO"].ToString();
+                    emp.Salario = int.Parse(f["SALARIO"].ToString());
+                    emp.Departamento = f["DNOMBRE"].ToString();
+                    emp.Localidad = f["LOC"].ToString();
+                    lista.Add(emp);
+                }
+                return lista;
+
+            }
+
         }
     }
 }
