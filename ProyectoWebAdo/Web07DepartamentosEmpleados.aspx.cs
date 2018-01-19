@@ -50,4 +50,24 @@ public partial class WebAdo_Web07DepartamentosEmpleados : System.Web.UI.Page
 </select>
 
 <button type='submit'>Mostrar datos</button>
-</form>*/
+</form>
+//<a href='Web06SalasPlantilla.aspx?empno=" + e.empno + "&salacod="+e.Salacod+"'>Eliminar</a></td>"
+    public void DibujarDepartamentos(List<Departamentos> dep)  //<button type="submit" value="Submit">Submit</button>
+    {                                                          //<option value="volvo">Volvo</option>             
+        String html = "<form>";
+        html += "<select name='departamentos' multiple size='7'>";
+        foreach (Departamentos d in dep)
+        {
+            html += "<option value='Web07DepartamentosEmpleados.aspx?depcod=" + d.Deptno + "' " + d.Deptno+"' >"+d.Deptnombre+ "</option>";
+            html += "";
+            html += "";
+        }
+        html += "</select>";
+        html += "</br></br></br>";
+        html += "<button type='submit'>Mostrar datos</button>";
+        html += "</form>";
+        this.lblDepartamentos.Text = html;
+    }
+
+
+*/
