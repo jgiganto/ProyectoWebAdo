@@ -32,6 +32,13 @@
                         </td>
                         <td class="auto-style4">
                             <asp:Label ID="lblEmpleados" runat="server"></asp:Label>
+                            <br />
+                            <br />
+                            <asp:Label ID="lbnumeropersonas" runat="server"></asp:Label>
+                            <br />
+                            <asp:Label ID="lbsumasalarial" runat="server"></asp:Label>
+                            <br />
+                            <asp:Label ID="lbcontrol" runat="server"></asp:Label>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
@@ -41,7 +48,9 @@
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td class="auto-style3">&nbsp;</td>
+                        <td class="auto-style3">
+                            <asp:Label ID="lblpruebas" runat="server" Text="Label"></asp:Label>
+                        </td>
                         <td class="auto-style4">&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
