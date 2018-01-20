@@ -14,7 +14,8 @@ namespace ProyectoWebAdo.Modelos
         public int deptno { get; set; }
         public String apellido { get; set; }
         public String oficio { get; set; }
-
+        public int numeroempleados { get; set; }   
+        public int sumasalarial { get; set; }
 
         public Empleados()
         {
